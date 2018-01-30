@@ -360,7 +360,39 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 }
 
 // Modified Power Law Model for Annular Flow Calculations
-void Models::annularflowcalcsPLM(double flowRateValue, double pipeID, double pipeLength, double mudDensity, double dR100, double dR3)
+void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, double annularLength, double mudDensity, double dR100, double dR3)
 {
+	// Variables for Annular Flow
+	double meanVelocityAnn;
 
+	double reynoldsNumberAnn;
+	double rNNum;
+	double rNDen;
+
+	double equivViscosityAnn;
+	double eVisc1;
+	double eVisc2;
+	double eVisc3;
+	double eVisc4;
+	double eVisc5;
+	
+	// Calculation of "n" Value
+	double nValueAnn;
+	
+	nValueAnn = ((0.657)*((log10((dR100)/(dR3))));
+		     
+     	// Calcuation of "k" Value
+	double kValueAnn;
+	
+	kValueAnn = (((5.11)*(dR100))/(pow(170.2,nValueAnn)));
+	
+	// Expressions for equivViscosityAnn variable
+	eVisc1 = ((100)*(kValueAnn)); // **
+	eVisc2 = (((2.4)*(meanVelocityAnn))/(wellAnnular));
+	eVisc3 = (pow(eVisc2,(nValueAnn - 1))); // **
+	eVisc4 = ((((2)*(nValueAnn))+1)/((3)*(n)));
+	eVisc5 = (pow(eVisc4,nValueAnn)); // **
+	equivViscosity = ((eVisc1)*(eVisc3)*(eVisc5));
+		     
+	
 }
