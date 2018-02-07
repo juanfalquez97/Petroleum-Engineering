@@ -16,7 +16,7 @@ public:
 
 	//Class members that calculate values for Pressure Loss (Modified Power Law Model)
 	void pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLength, double mudDensity, double dR600, double dR300);
-	void annularflowcalcsPLM(double flowRateValue, double wellAnnular, double annularLength, double mudDensity, double dR100, double dR3); // "wellAnnular": Equivalent Diameter; "annularLength": Length of the Annular Section
+	void annularflowcalcsPLM(double flowRateValue, double wellAnnular, double annularLength, double annularArea, double mudDensity, double dR100, double dR3); // "wellAnnular": Equivalent Diameter; "annularLength": Length of the Annular Section
 
 	// Class members that calculate values for Pressure Loss, Mean and Critical Velocities (Bingham Plastic Model)
 	void pipeflowcalcsBPM(double fRateV, double pipeID, double pipeLength, double plasticViscosity, double yieldPoint, double mudDensity);
@@ -30,7 +30,8 @@ public:
 	double pipeLengthCalc1(double holeLength, double bhaAccessLength);
 	double wellAnnularCalc1(double holeD, double pipeOD);
 	double annularAreaCalc1(double holeD, double pipeOD);
-
+	double pipeSectionLength(double holeLength, double bhaAccessLength, double pipeLength);
+	double pipeSectionLength1(double stDepth, double bottomDepth);
 
 	// Class Constructors and Destructors
 	Models();

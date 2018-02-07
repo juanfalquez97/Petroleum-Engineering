@@ -4,11 +4,23 @@ Models::Models()
 {
 	cout << "Drilling Hydraulics Calculations Algorithm" << endl;
 	cout << endl;
+
+	cout << "Developed by:" << endl;
+	cout << "Juan Falquez Arosemena" << endl;
+	cout << "Charles Carrera Vera" << endl;
+	cout << "Darwin Limones Zamora" << endl;
+	cout << endl;
+
+	cout << "Class Instructor: Romel Erazo, MSc." << endl;
+	cout << endl;
 }
 
 
 Models::~Models()
 {
+	cout << "Thanks for using the Drilling Hydraulics Algorithm!" << endl;
+	cout << endl;
+	cout << endl;
 }
 
 // Pipe Length Calculations (Only used for calculating Drill Pipe Length)
@@ -24,6 +36,8 @@ double Models::pipeLengthCalc1(double holeLength, double bhaAccessLength)
 // Bingham Plastic Model for Pipe Flow Calculations
 void Models::pipeflowcalcsBPM(double fRateV, double pipeID, double pipeLength, double plasticViscosity, double yieldPoint, double mudDensity)
 {
+	cout << "Bingham Plastic Model for Pipe Flow" << endl;
+	cout << endl;
 
 	// Variables created to simplify expressions when calculating Critical and Mean Velocities
 	double meanVelocity;
@@ -81,6 +95,7 @@ void Models::pipeflowcalcsBPM(double fRateV, double pipeID, double pipeLength, d
 
 		cout << "Pressure loss through the calculated pipe section (Laminar Flow) is: " << flush;
 		cout << lamFlowPressLoss << endl; // Laminar Flow Calculated Value Displayed
+		cout << endl;
 	}
 	else if (condTurbFlow == true)
 	{
@@ -135,9 +150,33 @@ double Models::annularAreaCalc1(double holeD, double pipeOD)
 	return annularArea;
 }
 
+
+// Pipe Length (Drill Pipe) calculations for DP in DC Section
+double Models::pipeSectionLength(double holeLength, double bhaAccessLength, double pipeLength)
+{
+	double pipeSectLength;
+
+	pipeSectLength = (holeLength - bhaAccessLength - pipeLength);
+
+	return pipeSectLength;
+}
+
+// Pipe Length (Drill Pipe) calculations for DP isolated in one Section
+double Models::pipeSectionLength1(double stDepth, double bottomDepth)
+{
+	double pipeSectLength;
+
+	pipeSectLength = (bottomDepth - stDepth);
+
+	return pipeSectLength;
+}
+
 // Calculations Performed for Mean Velocity, Critical Velocity, Laminar Flow and Turbulent Flow Pressure losses
 void Models::annularflowcalcsBPM(double fRateV, double wellAnnular, double annularLength, double annularArea, double plasticViscosity, double yieldPoint, double mudDensity)
 {
+	cout << "Bingham Plastic Model for Annular Flow" << endl;
+	cout << endl;
+
 	// Variables created to simplify expressions when calculating Critical and Mean Velocities
 	double meanVelocity;
 	double criticalVelocity;
@@ -194,6 +233,7 @@ void Models::annularflowcalcsBPM(double fRateV, double wellAnnular, double annul
 
 		cout << "Pressure loss through the calculated pipe section (Laminar Flow) is: " << flush;
 		cout << lamFlowPressLoss << endl; // Laminar Flow Calculated Value Displayed
+		cout << endl;
 	}
 	else if (condAnnTurbFlow == true)
 	{
@@ -252,6 +292,9 @@ double Models::yieldPointCalc1(double dR300, double plasticV)
 // Modified Power Law Model for Pipe Flow Calculations
 void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLength, double mudDensity, double dR600, double dR300)
 {
+	cout << "Modified Power Law Model for Pipe Flow" << endl;
+	cout << endl;
+
 	// Variables created to simplify expressions when calculating Critical Velocities, Mean Velocities and Reynolds Numbers
 	double meanVelocity;
 
@@ -309,6 +352,7 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 	if (condNumbReynolds1 == true)
 	{
 		cout << "Mean Velocity is: " << meanVelocity << endl;
+		cout << endl;
 		cout << "n Value is: " << nValue << endl;
 		cout << endl;
 		cout << "k Value is: " << kValue << endl;
@@ -325,8 +369,9 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 		cout << "Fanning Factor is: " << fanningLaminar << endl;
 		cout << endl;
 		cout << "Pipe Flow Pressure Loss (Laminar Flow) is: " << pipeFlowPressLoss << endl;
+		cout << endl;
 	}
-	else if (condNumbReynolds1 == true)
+	else if (condNumbReynolds2 == true)
 	{
 		// Variables for Turbulent Flow Fanning Factor calculations
 		double ffExp1;
@@ -339,13 +384,14 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 		ffExp3 = (pow(reynoldsNumber, ffExp2));
 
 		cout << "Mean Velocity is: " << meanVelocity << endl;
+		cout << endl;
 		cout << "n Value is: " << nValue << endl;
 		cout << endl;
 		cout << "k Value is: " << kValue << endl;
 		cout << endl;
 		cout << "Equivalent Viscosity is: " << equivViscosity << endl;
 		cout << endl;
-		cout << "Reynolds Number is (Laminar Flow): " << reynoldsNumber << endl;
+		cout << "Reynolds Number is (Turbulent Flow): " << reynoldsNumber << endl;
 		cout << endl;
 
 		fanningTurbulent = ((ffExp1) / (ffExp3));
@@ -355,13 +401,17 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 		cout << "Fanning Factor is: " << fanningTurbulent << endl;
 		cout << endl;
 		cout << "Pipe Flow Pressure Loss (Turbulent Flow) is: " << pipeFlowPressLoss << endl;
+		cout << endl;
 
 	}
 }
 
 // Modified Power Law Model for Annular Flow Calculations
-void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, double annularLength, double mudDensity, double dR100, double dR3)
+void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, double annularLength, double annularArea, double mudDensity, double dR100, double dR3)
 {
+
+	cout << "Modified Power Law Model for Annular Flow" << endl;
+	cout << endl;
 	// Variables for Annular Flow
 	double meanVelocityAnn;
 
@@ -375,13 +425,16 @@ void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, doubl
 	double eVisc3;
 	double eVisc4;
 	double eVisc5;
+
+	// Calculation of Mean Velocity Value
+	meanVelocityAnn = (((24.5)*(flowRateValue)) / (annularArea));
 	
-	// Calculation of "n" Value
+	// Calculation of "n" Value in Annular Flow
 	double nValueAnn;
 	
-	nValueAnn = ((0.657)*((log10((dR100)/(dR3))));
-		     
-     	// Calcuation of "k" Value
+	nValueAnn = ((0.657)*((log10((dR100)/(dR3)))));
+	
+	// Calcuation of "k" Value Annular Flow
 	double kValueAnn;
 	
 	kValueAnn = (((5.11)*(dR100))/(pow(170.2,nValueAnn)));
@@ -390,9 +443,83 @@ void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, doubl
 	eVisc1 = ((100)*(kValueAnn)); // **
 	eVisc2 = (((2.4)*(meanVelocityAnn))/(wellAnnular));
 	eVisc3 = (pow(eVisc2,(nValueAnn - 1))); // **
-	eVisc4 = ((((2)*(nValueAnn))+1)/((3)*(n)));
+	eVisc4 = ((((2)*(nValueAnn))+1)/((3)*(nValueAnn)));
 	eVisc5 = (pow(eVisc4,nValueAnn)); // **
-	equivViscosity = ((eVisc1)*(eVisc3)*(eVisc5));
-		     
+
+	equivViscosityAnn= ((eVisc1)*(eVisc3)*(eVisc5));
 	
+	// Calculations for Reynolds Number in Annular Flow
+	rNNum = ((15.467)*(meanVelocityAnn)*(wellAnnular)*(mudDensity));
+	rNDen = ((equivViscosityAnn));
+
+	reynoldsNumberAnn = ((rNNum) / (rNDen));
+
+	// Reynolds Number Conditions
+	bool condNumbReynoldsAnn1;
+	bool condNumbReynoldsAnn2;
+
+	condNumbReynoldsAnn1 = (reynoldsNumberAnn < 2100); //Laminar Flow
+	condNumbReynoldsAnn2 = (reynoldsNumberAnn > 2100); // Turbulent Flow
+
+	// Fanning Factor Variables
+	double fanningLamAnn;
+	double fanningTurbAnn;
+	double annFlowPressLoss;
+
+	if (condNumbReynoldsAnn1 == true)
+	{
+		cout << "Mean Velocity is: " << meanVelocityAnn << endl;
+		cout << endl;
+		cout << "n Value is: " << nValueAnn << endl;
+		cout << endl;
+		cout << "k Value is: " << kValueAnn << endl;
+		cout << endl;
+		cout << "Equivalent Viscosity is: " << equivViscosityAnn << endl;
+		cout << endl;
+		cout << "Reynolds Number is (Laminar Flow): " << reynoldsNumberAnn << endl;
+		cout << endl;
+
+		fanningLamAnn = ((24) / (reynoldsNumberAnn));
+
+		annFlowPressLoss = ((fanningLamAnn)*(pow(meanVelocityAnn, 2))*(mudDensity)*(annularLength)) / ((92916)*(wellAnnular));
+
+		cout << "Fanning Factor is: " << fanningLamAnn << endl;
+		cout << endl;
+		cout << "Annular Flow Pressure Loss (Laminar Flow) is: " << annFlowPressLoss << endl;
+		cout << endl;
+	}
+	else if (condNumbReynoldsAnn2 == true)
+	{
+		// Variables for Turbulent Flow Fanning Factor calculations
+		double ffExp1;
+		double ffExp2;
+		double ffExp3;
+
+		// Expressions for variables declared to calculate Turbulent Flow Fanning Factor
+		ffExp1 = ((log10(nValueAnn) + (3.93)) / (50));
+		ffExp2 = (((1.75) - (log10(nValueAnn))) / (7));
+		ffExp3 = (pow(reynoldsNumberAnn, ffExp2));
+
+		cout << "Mean Velocity is: " << meanVelocityAnn << endl;
+		cout << endl;
+		cout << "n Value is: " << nValueAnn << endl;
+		cout << endl;
+		cout << "k Value is: " << kValueAnn << endl;
+		cout << endl;
+		cout << "Equivalent Viscosity is: " << equivViscosityAnn << endl;
+		cout << endl;
+		cout << "Reynolds Number is (Laminar Flow): " << reynoldsNumberAnn << endl;
+		cout << endl;
+
+		fanningTurbAnn = ((ffExp1) / (ffExp3));
+
+		annFlowPressLoss = ((fanningTurbAnn)*(pow(meanVelocityAnn, 2))*(mudDensity)*(annularLength)) / ((92916)*(wellAnnular));
+
+		cout << "Fanning Factor is: " << fanningTurbAnn << endl;
+		cout << endl;
+		cout << "Pipe Flow Pressure Loss (Turbulent Flow) is: " << annFlowPressLoss << endl;
+		cout << endl;
+
+	}
+
 }
