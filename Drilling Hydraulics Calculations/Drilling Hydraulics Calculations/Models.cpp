@@ -48,11 +48,11 @@ void Models::pipeflowcalcsBPM(double fRateV, double pipeID, double pipeLength, d
 
 	// Mean and Critical Velocity Variables with expressions
 	meanVelocity = ((24.5)*(fRateV)) / (pow(pipeID, 2));
-	
+
 	cVsqrtValue = sqrt(((pow(plasticViscosity, 2)) + ((8.2)*(mudDensity)*(pow(pipeID, 2))*(yieldPoint))));
 
 	cVNum = ((97)*(plasticViscosity)) + ((97)*(cVsqrtValue));
-	
+
 	cVDen = ((pipeID)*(mudDensity));
 
 	criticalVelocity = ((cVNum) / (cVDen));
@@ -330,7 +330,7 @@ void Models::pipeflowcalcsPLM(double flowRateValue, double pipeID, double pipeLe
 	eVisc5 = (pow(eVisc4, nValue));// **
 
 	equivViscosity = ((eVisc1)*(eVisc3)*(eVisc5));
- 
+
 	// Reynolds number Calculation
 	rNNum = ((15.467)*(meanVelocity)*(pipeID)*(mudDensity));
 	rNDen = ((equivViscosity));
@@ -428,26 +428,26 @@ void Models::annularflowcalcsPLM(double flowRateValue, double wellAnnular, doubl
 
 	// Calculation of Mean Velocity Value
 	meanVelocityAnn = (((24.5)*(flowRateValue)) / (annularArea));
-	
+
 	// Calculation of "n" Value in Annular Flow
 	double nValueAnn;
-	
-	nValueAnn = ((0.657)*((log10((dR100)/(dR3)))));
-	
+
+	nValueAnn = ((0.657)*((log10((dR100) / (dR3)))));
+
 	// Calcuation of "k" Value Annular Flow
 	double kValueAnn;
-	
-	kValueAnn = (((5.11)*(dR100))/(pow(170.2,nValueAnn)));
-	
+
+	kValueAnn = (((5.11)*(dR100)) / (pow(170.2, nValueAnn)));
+
 	// Expressions for equivViscosityAnn variable
 	eVisc1 = ((100)*(kValueAnn)); // **
-	eVisc2 = (((2.4)*(meanVelocityAnn))/(wellAnnular));
-	eVisc3 = (pow(eVisc2,(nValueAnn - 1))); // **
-	eVisc4 = ((((2)*(nValueAnn))+1)/((3)*(nValueAnn)));
-	eVisc5 = (pow(eVisc4,nValueAnn)); // **
+	eVisc2 = (((2.4)*(meanVelocityAnn)) / (wellAnnular));
+	eVisc3 = (pow(eVisc2, (nValueAnn - 1))); // **
+	eVisc4 = ((((2)*(nValueAnn)) + 1) / ((3)*(nValueAnn)));
+	eVisc5 = (pow(eVisc4, nValueAnn)); // **
 
-	equivViscosityAnn= ((eVisc1)*(eVisc3)*(eVisc5));
-	
+	equivViscosityAnn = ((eVisc1)*(eVisc3)*(eVisc5));
+
 	// Calculations for Reynolds Number in Annular Flow
 	rNNum = ((15.467)*(meanVelocityAnn)*(wellAnnular)*(mudDensity));
 	rNDen = ((equivViscosityAnn));

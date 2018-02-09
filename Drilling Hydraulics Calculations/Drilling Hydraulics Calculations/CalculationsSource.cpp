@@ -42,19 +42,18 @@ int main()
 	// Method Call
 	Models calculate;
 
-	/*wellAnnular = calculate.wellAnnularCalc1(12.25, 8);
-	annularArea = calculate.annularAreaCalc1(12.25, 8);
-	pipeLength = calculate.pipeLengthCalc1(9000, 350);
-
-	calculate.annularflowcalcsBPM(500, wellAnnular, 350, annularArea, 40, 30, 17.5);*/
-
-
+	// Command Selection Variables
 	string flowSelection;
 	string modelSelection;
 	string pipeSelection;
 	string dPSectionSelection;
 	string yesnoSelection;
+	string closeDHC;
 
+	cout << "---------------------------------------------------------------------------------------" << endl;
+	cout << endl;
+
+	// Instructions to choose flow type or abort the algorithm
 	cout << "For Pipe Flow, type: pipe" << endl;
 	cout << endl;
 	cout << "For Annular Flow, type: annular" << endl;
@@ -66,7 +65,10 @@ int main()
 	cin >> flowSelection;
 	cout << endl;
 
-	if (flowSelection == "pipe")
+	cout << "---------------------------------------------------------------------------------------" << endl;
+	cout << endl;
+
+	if (flowSelection == "pipe") // Pipe Flow Calculations Selection
 	{
 		cout << "Pipe Flow Calculations Selected." << endl;
 		cout << endl;
@@ -84,7 +86,10 @@ int main()
 		cout << endl;
 		cout << endl;
 
-		if (modelSelection == "BPM")
+		cout << "---------------------------------------------------------------------------------------" << endl;
+		cout << endl;
+
+		if (modelSelection == "BPM") // Bingham Plastic Model Selection
 		{
 			cout << "BPM Selected." << endl;
 			cout << endl;
@@ -96,17 +101,15 @@ int main()
 			// Flow Rate Value Input
 			cout << "Flow Rate: " << flush;
 			cin >> flowRate;
-			cout << endl;
 
 			// Mud Density Value Input
 			cout << "Mud Density: " << flush;
 			cin >> mudDensity;
-			cout << endl;
 
 			// Drill Collars Length Value Input
 			cout << "Drill Collars Length: " << flush;
 			cin >> dCLength;
-			cout << endl;
+
 
 			// Well Depth Value Input
 			cout << "Well Depth: " << flush;
@@ -119,27 +122,29 @@ int main()
 			// Plastic Viscosity Value Input
 			cout << "Plastic Viscosity: " << flush;
 			cin >> plasticVisc;
-			cout << endl;
 
 			// Yield Point Value Input
 			cout << "Yield Point: " << flush;
 			cin >> yieldP;
 			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
+
 			if ((plasticVisc == 0) && (yieldP == 0)) // Conditioning for PV and YP calculations with Dial Readings
 			{
+				// Dial Reading at 600 RPM Value Input
 				cout << "Dial Reading at 600 RPM: " << flush;
 				cin >> dR600;
-				cout << endl;
 
+				// Dial Reading at 300 RPM Value Input
 				cout << "Dial Reading at 300 RPM: " << flush;
 				cin >> dR300;
-				cout << endl;
 
 				plasticVisc = calculate.plasticViscosityCalc1(dR600, dR300);
 
 				cout << endl;
-				cout << "Plastic Viscosity from Dial Readings: " << endl;
+				cout << "Plastic Viscosity from Dial Readings: " << flush;
 				cout << plasticVisc << endl;
 
 
@@ -147,6 +152,9 @@ int main()
 				cout << endl;
 				cout << "Yield Point from Dial Readings is: " << flush;
 				cout << yieldP << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
 			}
 
 			// Pipe Selection
@@ -155,6 +163,8 @@ int main()
 			cout << endl;
 			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
 
 			if (pipeSelection == "DP") // Drill Pipe Selection
 			{
@@ -171,9 +181,23 @@ int main()
 				cout << pipeLength;
 				cout << endl;
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses for pipe flow
 				calculate.pipeflowcalcsBPM(flowRate, pipeID, pipeLength, plasticVisc, yieldP, mudDensity);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm..." << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 			else if (pipeSelection == "DC") // Drill Collars Selection
 			{
@@ -187,14 +211,28 @@ int main()
 				cout << pipeLength;
 				cout << endl;
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses for pipe flow
 				calculate.pipeflowcalcsBPM(flowRate, pipeID, pipeLength, plasticVisc, yieldP, mudDensity);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm..." << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 
 
 		}
-		else if (modelSelection == "MPLM")
+		else if (modelSelection == "MPLM") // Modified Power Law Model Selection
 		{
 			cout << "MPLM Selected" << endl;
 			cout << endl;
@@ -206,39 +244,37 @@ int main()
 			// Flow Rate Value Input
 			cout << "Flow Rate: " << flush;
 			cin >> flowRate;
-			cout << endl;
 
 			// Mud Density Value Input
 			cout << "Mud Density: " << flush;
 			cin >> mudDensity;
-			cout << endl;
 
 			// Drill Collars Length Value Input
 			cout << "Drill Collars Length: " << flush;
 			cin >> dCLength;
-			cout << endl;
 
 			// Well Depth Value Input
 			cout << "Well Depth: " << flush;
 			cin >> wellDepth;
-			cout << endl;
 
 			// Dial Reading at 600 RPM Value Input
 			cout << "Dial Reading at 600 RPM: " << flush;
 			cin >> dR600;
-			cout << endl;
 
 			// Dial Reading at 300 RPM Value Input
 			cout << "Dial Reading at 300 RPM: " << flush;
 			cin >> dR300;
-			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
 
 			// Pipe Selection
 			cout << "Type in the pipe section to be used for calculations (DP for Drill Pipes, DC for Drill Collars): " << flush;
 			cin >> pipeSelection;
 			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
 
 			if (pipeSelection == "DP") // Drill Pipe Selection
 			{
@@ -254,9 +290,23 @@ int main()
 				cout << pipeLength;
 				cout << endl;
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses for pipe flow
 				calculate.pipeflowcalcsPLM(flowRate, pipeID, pipeLength, mudDensity, dR600, dR300);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm..." << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 			else if (pipeSelection == "DC") // Drill Collars Selection
 			{
@@ -270,14 +320,28 @@ int main()
 				cout << pipeLength;
 				cout << endl;
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses through pipe flow
 				calculate.pipeflowcalcsPLM(flowRate, pipeID, pipeLength, mudDensity, dR600, dR300);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm..." << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 
 		}
 	}
-	else if (flowSelection == "annular")
+	else if (flowSelection == "annular") // Annular Flow Calculations Selection
 	{
 		cout << "Annular Flow Calculations Selected" << endl;
 		cout << endl;
@@ -293,7 +357,10 @@ int main()
 		cout << endl;
 		cout << endl;
 
-		if (modelSelection == "BPM")
+		cout << "---------------------------------------------------------------------------------------" << endl;
+		cout << endl;
+
+		if (modelSelection == "BPM") // Bingham Plastic Model Selection
 		{
 			cout << "BPM Selected" << endl;
 			cout << endl;
@@ -305,23 +372,18 @@ int main()
 			// Flow Rate Value Input
 			cout << "Flow Rate: " << flush;
 			cin >> flowRate;
-			cout << endl;
 
 			// Mud Density Value Input
 			cout << "Mud Density: " << flush;
 			cin >> mudDensity;
-			cout << endl;
 
 			// Drill Collars Length Value Input
 			cout << "Drill Collars Length: " << flush;
 			cin >> dCLength;
-			cout << endl;
 
 			// Well Depth Value Input
 			cout << "Well Depth: " << flush;
 			cin >> wellDepth;
-			cout << endl;
-
 
 
 			cout << "If PV and YP values are not available, type 0 to input Dial Readings Values to calculate PV and YP" << endl;
@@ -330,22 +392,24 @@ int main()
 			// Plastic Viscosity Value Input
 			cout << "Plastic Viscosity: " << flush;
 			cin >> plasticVisc;
-			cout << endl;
 
 			// Yield Point Value Input
 			cout << "Yield Point: " << flush;
 			cin >> yieldP;
+
+			cout << "---------------------------------------------------------------------------------------" << endl;
 			cout << endl;
 
 			if ((plasticVisc == 0) && (yieldP == 0)) // Conditioning for PV and YP calculations with Dial Readings
 			{
+
+				// Dial Reading at 600 RPM Value Input
 				cout << "Dial Reading at 600 RPM: " << flush;
 				cin >> dR600;
-				cout << endl;
 
+				// Dial Reading at 300 RPM Value Input
 				cout << "Dial Reading at 300 RPM: " << flush;
 				cin >> dR300;
-				cout << endl;
 
 				plasticVisc = calculate.plasticViscosityCalc1(dR600, dR300);
 
@@ -358,7 +422,11 @@ int main()
 				cout << endl;
 				cout << "Yield Point from Dial Readings is: " << flush;
 				cout << yieldP << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
 			}
+
 
 			// Pipe Selection
 			cout << "Type in the pipe section to be used for calculations (DP for Drill Pipes, DC for Drill Collars): " << flush;
@@ -366,7 +434,10 @@ int main()
 			cout << endl;
 			cout << endl;
 
-			if (pipeSelection == "DP")
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
+
+			if (pipeSelection == "DP") // Drill Pipes Selection
 			{
 
 				// Drill Pipe Outer Diameter Value Input
@@ -380,7 +451,7 @@ int main()
 				cin >> yesnoSelection;
 				cout << endl;
 
-				if (yesnoSelection == "yes")
+				if (yesnoSelection == "yes") // Drill Pipe in Drill Collars' Section Selection
 				{
 					// Well Borehole Diameter for the Drilled Section Value Input
 					cout << "Drilled Section Diameter (Borehole): " << flush;
@@ -399,20 +470,36 @@ int main()
 
 					annularLength = calculate.pipeSectionLength(wellDepth, dCLength, prevSectionBottomDepth);
 
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
+					// 
 					calculate.annularflowcalcsBPM(flowRate, wellAnnular, annularLength, annularArea, plasticVisc, yieldP, mudDensity);
 					cout << endl;
 
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
+					calculate.~Models();
+					cout << endl;
+
+					cout << "Type continue to Exit Algorithm..." << flush;
+					cin >> closeDHC;
+					cout << endl;
+
+
 				}
-				else if (yesnoSelection == "no")
+				else if (yesnoSelection == "no") // Drill Pipe in isolated Section Selection
 				{
+					// Drilled Section Diameter Value Input
 					cout << "Drilled Section Diameter (Borehole): " << endl;
 					cin >> wellDiameter;
-					cout << endl;
 
+					// Drilled Section Starting Depth
 					cout << "Starting Depth: " << endl;
 					cin >> stDepth;
-					cout << endl;
 
+					// Drilled Section Bottom Depth
 					cout << "Bottom Depth: " << endl;
 					cin >> bottomDepth;
 					cout << endl;
@@ -423,25 +510,37 @@ int main()
 
 					annularArea = calculate.annularAreaCalc1(wellDiameter, pipeOD);
 
-					calculate.annularflowcalcsBPM(flowRate, wellAnnular, annularLength, annularArea, plasticVisc, yieldP, mudDensity);
-
+					cout << "---------------------------------------------------------------------------------------" << endl;
 					cout << endl;
+
+					//
+					calculate.annularflowcalcsBPM(flowRate, wellAnnular, annularLength, annularArea, plasticVisc, yieldP, mudDensity);
+					cout << endl;
+
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
+					calculate.~Models();
+					cout << endl;
+
+					cout << "Type continue to Exit Algorithm..." << flush;
+					cin >> closeDHC;
+					cout << endl;
+
 				}
 
 
 			}
-			else if (pipeSelection == "DC")
+			else if (pipeSelection == "DC") // Drill Collars Selection
 			{
 				// Drill Collars Pipe OD Input
 				cout << "Pipe OD (Drill Collars): " << flush;
 				cin >> pipeOD;
-				cout << endl;
 
 				// Drill Collars Length Value Input
 				pipeLength = dCLength;
 				cout << "Drill Collars Length: " << flush;
 				cout << pipeLength;
-				cout << endl;
 
 				// Well Diameter Value Input
 				cout << "Well Diameter for the Scoped Section: " << flush;
@@ -452,13 +551,27 @@ int main()
 				wellAnnular = calculate.wellAnnularCalc1(wellDiameter, pipeOD);
 				annularArea = calculate.annularAreaCalc1(wellDiameter, pipeOD);
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses Through Annular flow
 				calculate.annularflowcalcsBPM(flowRate, wellAnnular, pipeLength, annularArea, plasticVisc, yieldP, mudDensity);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm...: " << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 
 		}
-		else if (modelSelection == "MPLM")
+		else if (modelSelection == "MPLM") // Modified Power Law Model Selection
 		{
 			cout << "MPLM Selected" << endl;
 			cout << endl;
@@ -470,39 +583,38 @@ int main()
 			// Flow Rate Value Input
 			cout << "Flow Rate: " << flush;
 			cin >> flowRate;
-			cout << endl;
 
 			// Mud Density Value Input
 			cout << "Mud Density: " << flush;
 			cin >> mudDensity;
-			cout << endl;
 
 			// Drill Collars Length Value Input
 			cout << "Drill Collars Length: " << flush;
 			cin >> dCLength;
-			cout << endl;
 
 			// Well Depth Value Input
 			cout << "Well Depth: " << flush;
 			cin >> wellDepth;
-			cout << endl;
 
 			// Dial Reading at 600 RPM Value Input
 			cout << "Dial Reading at 100 RPM: " << flush;
 			cin >> dR100;
-			cout << endl;
 
 			// Dial Reading at 300 RPM Value Input
 			cout << "Dial Reading at 3 RPM: " << flush;
 			cin >> dR3;
 			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
 
 			// Pipe Selection
 			cout << "Type in the pipe section to be used for calculations (DP for Drill Pipes, DC for Drill Collars): " << flush;
 			cin >> pipeSelection;
 			cout << endl;
 
+			cout << "---------------------------------------------------------------------------------------" << endl;
+			cout << endl;
 
 			if (pipeSelection == "DP") // Drill Pipe Selection
 			{
@@ -517,14 +629,14 @@ int main()
 				cin >> yesnoSelection;
 				cout << endl;
 
-				if (yesnoSelection == "yes")
+				if (yesnoSelection == "yes") // Drill pipe in Drill Collars' section selection
 				{
 
 					// Well Diameter Value Input
 					cout << "Well Diameter of the Scoped Section (Borehole): " << flush;
 					cin >> wellDiameter;
-					cout << endl;
 
+					// Drilled Section Starting Depth or Previous Section Bottom Depth Value Input
 					cout << "Drilled Section Starting Depth (Previous Section Bottom Depth): " << flush;
 					cin >> prevSectionBottomDepth;
 					cout << endl;
@@ -537,21 +649,36 @@ int main()
 
 					annularArea = calculate.annularAreaCalc1(wellDiameter, pipeOD);
 
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
 					// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses for Annular flow
 					calculate.annularflowcalcsPLM(flowRate, wellAnnular, annularLength, annularArea, mudDensity, dR100, dR3);
 					cout << endl;
+
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
+					calculate.~Models();
+					cout << endl;
+
+					cout << "Type continue to Exit Algorithm..." << flush;
+					cin >> closeDHC;
+					cout << endl;
+
 				}
-				else if (yesnoSelection == "no")
+				else if (yesnoSelection == "no") // Drill Pipe in isolated section Selection
 				{
 
+					// Well Diameter Value Input
 					cout << "Well Diameter of the Scoped Section (Borehole): " << flush;
 					cin >> wellDiameter;
-					cout << endl;
 
+					// Starting Depth Value Input
 					cout << "Starting Depth of the Scoped Section: " << flush;
 					cin >> stDepth;
-					cout << endl;
 
+					// Bottom Depth Value Input
 					cout << "Bottom Depth of the Scoped Section: " << flush;
 					cin >> bottomDepth;
 					cout << endl;
@@ -562,9 +689,23 @@ int main()
 
 					annularArea = calculate.annularAreaCalc1(wellDiameter, pipeOD);
 
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
 					// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses for pipe flow
 					calculate.annularflowcalcsPLM(flowRate, wellAnnular, annularLength, annularArea, mudDensity, dR100, dR3);
 					cout << endl;
+
+					cout << "---------------------------------------------------------------------------------------" << endl;
+					cout << endl;
+
+					calculate.~Models();
+					cout << endl;
+
+					cout << "Type continue to Exit Algorithm..." << flush;
+					cin >> closeDHC;
+					cout << endl;
+
 				}
 
 
@@ -575,12 +716,10 @@ int main()
 				// Well Diameter Value Input
 				cout << "Well Diameter of the Scoped Section: " << flush;
 				cin >> wellDiameter;
-				cout << endl;
 
 				// Drill Collars Pipe ID Input
 				cout << "Pipe OD (Drill Collars): " << flush;
 				cin >> pipeOD;
-				cout << endl;
 
 				// Drill Collars Length Value Output
 				annularLength = dCLength;
@@ -592,16 +731,42 @@ int main()
 
 				annularArea = calculate.annularAreaCalc1(wellDiameter, pipeOD);
 
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
 				// Call method to calculate Mean Velocity, Critical Velocity and Pressure Losses through pipe flow
 				calculate.annularflowcalcsPLM(flowRate, wellAnnular, annularLength, annularArea, mudDensity, dR100, dR3);
 				cout << endl;
+
+				cout << "---------------------------------------------------------------------------------------" << endl;
+				cout << endl;
+
+				calculate.~Models();
+				cout << endl;
+
+				cout << "Type continue to Exit Algorithm..." << flush;
+				cin >> closeDHC;
+				cout << endl;
+
 			}
 		}
+
 	}
-	else if (flowSelection == "cancel")
+	else if (flowSelection == "cancel") // Abort algorithm command
 	{
 		cout << "Drilling Hydraulics Models Algorithm Execution Canceled" << endl;
 		cout << endl;
+
+		cout << "---------------------------------------------------------------------------------------" << endl;
+		cout << endl;
+
+		calculate.~Models();
+		cout << endl;
+
+		cout << "Type continue to Exit Algorithm..." << flush;
+		cin >> closeDHC;
+		cout << endl;
+
 	}
 
 	return 0;
